@@ -5,7 +5,7 @@ from time import sleep
 from win32con import HWND_TOPMOST, SWP_SHOWWINDOW
 from threading import Thread, Event
 from random import randint, uniform
-from start_part import FGO
+from start_part import Start_FGO
 import share
 
 
@@ -23,7 +23,7 @@ def mumu_error():
             sleep(10)
             # 这里需要清除标记再启动
             share.stop_event.clear()
-            FGO()
+            Start_FGO()
             # 注意要重新获取窗口句柄
             break
         except ImageNotFoundException:
@@ -37,5 +37,6 @@ def start_daily():
     sleep(10)
     mumu_error1 = Thread(target=mumu_error)
     mumu_error1.start()
-    FGO()
+    Start_FGO()
     # 找句柄放在FGO里，这样每启动一次，就能置顶一下，很ok
+    

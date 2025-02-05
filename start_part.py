@@ -8,6 +8,8 @@ from threading import Event
 
 # 创建一个线程事件
 share.stop_event = Event()
+
+
 def running():
     num = randint(1, 8)  # 生成 1 到 8 之间的随机整数（包括 1 和 8）
     num_f = uniform(0.1, 0.3)
@@ -25,7 +27,7 @@ def running():
             print("没有找到进入游戏的关键图像")
 
 
-def FGO():
+def Start_FGO(): #用于启动FGO
     while not share.stop_event.is_set():
         print("寻找窗口句柄中")
         hwnd = FindWindow("Qt5156QWindowIcon", "MuMu模拟器12")
@@ -49,7 +51,40 @@ def FGO():
             moveTo(auto_2, duration=0.2)
             moveRel(num, num, duration=num_f)
             click()
+            sleep(2)
+            moveTo(626, 337, duration=0.2)
+            moveRel(num, num, duration=num_f)
+            click()
+            sleep(1)
+            moveTo(156, 32, duration=0.2)
+            moveRel(num, num, duration=num_f)
+            click()
+            sleep(1)
+            moveTo(633, 868, duration=0.2)
+            moveRel(num, num, duration=num_f)
+            click()
+            print("成功进入游戏")
             break
         except ImageNotFoundException:
             print("没有找到小猫")
             sleep(1)
+
+def launching():
+    re = 0
+    while not share.stop_event.is_set():
+        num = randint(1, 8)  # 生成 1 到 8 之间的随机整数（包括 1 和 8）
+        num_f = uniform(0.1, 0.3)
+        if re == 0:
+            try:
+                locateOnScreen("images/1.png", confidence=0.8)
+                moveTo(661, 899, duration=0.2)
+                moveRel(num, num, duration=num_f)
+                click()
+                sleep(2)
+                moveTo(633, 868, duration=0.2)
+                moveRel(num, num, duration=num_f)
+                click()
+                # 这一部分写得有点乱，等后面优化，特别是逻辑
+            except ImageNotFoundException:
+                print("没有找到通信失败")
+                sleep(1)
