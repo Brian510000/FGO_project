@@ -39,4 +39,5 @@ def start_daily():
     mumu_error1.start()
     Start_FGO()
     # 找句柄放在FGO里，这样每启动一次，就能置顶一下，很ok
-    
+    # 还需要做一个启动PC端clash，然后再杀进程的逻辑
+    # 不然每次都进不去，或者说还要检查，麻烦
