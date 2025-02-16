@@ -5,7 +5,7 @@ from time import sleep
 from win32con import HWND_TOPMOST, SWP_SHOWWINDOW
 from threading import Thread, Event
 from random import randint, uniform
-from start_part import Start_FGO
+from start_part import Start_FGO, launching
 import share
 
 
@@ -41,3 +41,5 @@ def start_daily():
     # 找句柄放在FGO里，这样每启动一次，就能置顶一下，很ok
     # 还需要做一个启动PC端clash，然后再杀进程的逻辑
     # 不然每次都进不去，或者说还要检查，麻烦
+    sleep(2)
+    launching()

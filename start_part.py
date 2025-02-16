@@ -70,11 +70,28 @@ def Start_FGO(): #用于启动FGO
             sleep(1)
 
 def launching():
-    re = 0
     while not share.stop_event.is_set():
         num = randint(1, 8)  # 生成 1 到 8 之间的随机整数（包括 1 和 8）
         num_f = uniform(0.1, 0.3)
-        if re == 0:
+        while not share.stop_event.is_set():
+            try:
+                print("正常尝试寻找不正常启动")
+                locateOnScreen("images/2.png", confidence=0.8)
+                moveTo(1263, 900, duration=0.2)
+                moveRel(num, num, duration=num_f)
+                click()
+            except ImageNotFoundException:
+                print("这次循环没有找到不正常启动")
+                sleep(0.5)
+            try:
+                print("正在寻找是否有更新")
+                locateOnScreen("images/img_1.png", confidence=0.8)
+                moveTo(1260, 899, duration=0.2)
+                moveRel(num, num, duration=num_f)
+                click()
+            except ImageNotFoundException:
+                print("没有找到更新")
+                sleep(0.5)
             try:
                 locateOnScreen("images/1.png", confidence=0.8)
                 moveTo(661, 899, duration=0.2)
@@ -88,3 +105,30 @@ def launching():
             except ImageNotFoundException:
                 print("没有找到通信失败")
                 sleep(1)
+            try:
+                locateOnScreen("images/image.png", confidence=0.8)
+                moveTo(1260, 899, duration=0.2)
+                moveRel(num, num, duration=num_f)
+                click()
+                sleep(1)
+                while not share.stop_event.is_set():
+                    try:
+                        locateOnScreen("images/image3.png", confidence=0.8)
+                        moveTo(1260, 899, duration=0.2)
+                        moveRel(num, num, duration=num_f)
+                        click()
+                        sleep(1)
+                        while not share.stop_event.is_set():
+                            try:
+                                auto4 = locateOnScreen("images/3.png", confidence=0.8)
+                                moveTo(auto4, duration=0.2)
+                                moveRel(num, num, duration=num_f)
+                                click()
+                            except ImageNotFoundException:
+                                print("还没有找到叉叉")
+                                sleep(1)
+                    except ImageNotFoundException:
+                        print("没有找到引继码以作为关键图像")
+                        sleep(1)
+            except ImageNotFoundException:
+                print("没有找到开始游戏的画面")

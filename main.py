@@ -1,6 +1,7 @@
 from tkinter import Tk, Button, Label, Frame
 from ctypes import windll
 from start import start_daily
+from start_part import launching
 windll.shcore.SetProcessDpiAwareness(1)  # 禁用 DPI 缩放
 
 
@@ -65,7 +66,8 @@ def create_button(parent, text, command, row, column, bg_color, hover_color, **g
 
 # 添加按钮
 create_button(button_frame, "一键启动日常", start_daily, 0, 0, bg_color="#4CAF50", hover_color="#3E8E41")
-create_button(button_frame, "退出程序", exit_app, 0, 1, bg_color="#F44336", hover_color="#D32F2F")  # 红色按钮
+# create_button(button_frame, "退出程序", exit_app, 0, 1, bg_color="#F44336", hover_color="#D32F2F")  # 红色按钮
+create_button(button_frame, "测试", launching, 0, 1, bg_color="#F44336", hover_color="#D32F2F")  # 红色按钮
 
 # 状态栏
 status_label = Label(
